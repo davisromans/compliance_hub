@@ -12,6 +12,11 @@ const routes = [
     component: () => import('../views/public/PrivacyPolicy.vue')
   },
   {
+    path: '/p/:projectCode/terms',
+    name: 'TermsOfService',
+    component: () => import('../views/public/Terms.vue') // <-- New Route
+  },
+  {
     path: '/p/:projectCode/delete-account',
     name: 'DeleteAccount',
     component: () => import('../views/public/DeleteAccount.vue')
@@ -29,7 +34,6 @@ const routes = [
 ]
 
 const router = createRouter({
-  // Use createWebHashHistory for seamless GitHub Pages deployment
   history: createWebHashHistory(),
   routes
 })

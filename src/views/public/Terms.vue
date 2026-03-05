@@ -5,7 +5,7 @@
         <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
       </router-link>
       <div v-if="project">
-        <h1 class="text-3xl font-bold text-white uppercase tracking-wider">{{ project.name }} - Privacy Policy</h1>
+        <h1 class="text-3xl font-bold text-white uppercase tracking-wider">{{ project.name }} - Terms of Service</h1>
       </div>
       <div v-else-if="!isLoading">
         <h1 class="text-3xl font-bold text-white uppercase tracking-wider">Project Not Found</h1>
@@ -17,12 +17,12 @@
     </div>
 
     <div v-else-if="project" class="prose prose-invert max-w-none text-gray-300">
-      <div v-if="project.privacyPolicy" v-html="project.privacyPolicy" class="dynamic-html-content"></div>
+      <div v-if="project.terms" v-html="project.terms" class="dynamic-html-content"></div>
       
       <div v-else>
-        <h2 class="text-white font-bold text-2xl mb-4">1. Introduction</h2>
+        <h2 class="text-white font-bold text-2xl mb-4">1. Acceptance of Terms</h2>
         <p class="mb-6 leading-relaxed">
-          Welcome to {{ project.name }}. We are committed to protecting your personal data and your right to privacy.
+          By accessing and using {{ project.name }}, you accept and agree to be bound by the terms and provision of this agreement.
         </p>
       </div>
     </div>
