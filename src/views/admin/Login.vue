@@ -17,7 +17,7 @@
           <input 
             v-model="adminKey" 
             type="password" 
-            placeholder="ghp_xxxxxxxxxxxxxxxxx..." 
+            placeholder="github_pat_xxxxxxxxxxxxxxxxx..." 
             required
             class="w-full bg-dark-900 border border-dark-700 text-white px-4 py-3.5 rounded-xl focus:ring-2 focus:ring-primary-500 focus:outline-none transition-all placeholder-gray-600" 
           />
@@ -46,12 +46,14 @@ const errorMessage = ref('')
 const handleLogin = () => {
   errorMessage.value = ''
   
-  if (adminKey.value.startsWith('ghp_')) {
+  const key = adminKey.value.trim()
+  
+  if (key.startsWith('ghp_') || key.startsWith('github_pat_')) {
     sessionStorage.setItem('isAdminAuth', 'true')
-    sessionStorage.setItem('github_pat', adminKey.value) 
+    sessionStorage.setItem('github_pat', key)
     router.push('/admin/dashboard')
   } else {
-    errorMessage.value = 'Invalid GitHub Token. Must start with ghp_'
+    errorMessage.value = 'Invalid Token format. Must start with ghp_ or github_pat_'
     adminKey.value = '' 
   }
 }
