@@ -1,0 +1,8 @@
+[
+  {
+    "name": "ADM Ministry",
+    "code": "adm",
+    "deleteApiUrl": "http://172.105.118.145/api/auth/web-delete",
+    "privacyPolicy": "<h2>Privacy Policy</h2>"
+  }
+]
