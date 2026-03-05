@@ -10,21 +10,21 @@
       </div>
       
       <h2 class="text-2xl font-bold text-white mb-2 text-center">Admin Access</h2>
-      <p class="text-gray-400 text-sm text-center mb-8">Enter your master key to configure projects.</p>
+      <p class="text-gray-400 text-sm text-center mb-8">Enter your GitHub Personal Access Token to manage your apps.</p>
 
       <form @submit.prevent="handleLogin" class="space-y-4">
         <div>
           <input 
             v-model="adminKey" 
             type="password" 
-            placeholder="Master Key" 
+            placeholder="ghp_xxxxxxxxxxxxxxxxx..." 
             required
             class="w-full bg-dark-900 border border-dark-700 text-white px-4 py-3.5 rounded-xl focus:ring-2 focus:ring-primary-500 focus:outline-none transition-all placeholder-gray-600" 
           />
         </div>
         
         <button type="submit" class="w-full py-3.5 bg-primary-600 hover:bg-primary-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-primary-600/20">
-          Unlock Dashboard
+          Secure Login
         </button>
 
         <p v-if="errorMessage" class="text-danger-400 text-sm text-center mt-4 bg-danger-500/10 py-2 rounded-lg border border-danger-500/20">
@@ -46,11 +46,12 @@ const errorMessage = ref('')
 const handleLogin = () => {
   errorMessage.value = ''
   
-  if (adminKey.value === 'Mwaisemba1994.') {
+  if (adminKey.value.startsWith('ghp_')) {
     sessionStorage.setItem('isAdminAuth', 'true')
+    sessionStorage.setItem('github_pat', adminKey.value) 
     router.push('/admin/dashboard')
   } else {
-    errorMessage.value = 'Incorrect Master Key'
+    errorMessage.value = 'Invalid GitHub Token. Must start with ghp_'
     adminKey.value = '' 
   }
 }

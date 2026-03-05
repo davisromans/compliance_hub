@@ -1,16 +1,12 @@
-const owner = import.meta.env.VITE_GITHUB_OWNER;
-const repo = import.meta.env.VITE_GITHUB_REPO;
-const token = import.meta.env.VITE_GITHUB_TOKEN;
+// src/utils/github.js
+const owner = 'davisromans';
+const repo = 'compliance_hub';
 const path = 'projects.json';
-
-const headers = {
-  'Authorization': `token ${token}`,
-  'Accept': 'application/vnd.github.v3+json',
-  'Content-Type': 'application/json',
-};
 
 export async function getProjects() {
   try {
+    const headers = { 'Accept': 'application/vnd.github.v3+json' };
+    
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?t=${Date.now()}`, { headers });
     
     if (response.status === 404) return { data: [], sha: null }; 
@@ -26,6 +22,12 @@ export async function getProjects() {
 }
 
 export async function saveProjects(projectsArray, sha) {
+  const token = sessionStorage.getItem('github_pat');
+  
+  if (!token) {
+    throw new Error("You are not logged in with a valid GitHub Token.");
+  }
+
   const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(projectsArray, null, 2))));
 
   const body = {
@@ -38,7 +40,11 @@ export async function saveProjects(projectsArray, sha) {
 
   const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
     method: 'PUT',
-    headers,
+    headers: {
+      'Authorization': `token ${token}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(body)
   });
 
@@ -47,5 +53,5 @@ export async function saveProjects(projectsArray, sha) {
     throw new Error(err.message);
   }
 
-  return await response.json(); 
+  return await response.json();
 }
