@@ -7,14 +7,10 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 12% -10%, rgba(37, 99, 235, 0.18), transparent 34rem),
-    radial-gradient(circle at 88% 8%, rgba(239, 68, 68, 0.08), transparent 28rem),
-    linear-gradient(180deg, #111827 0%, #0B0F19 42rem, #0B0F19 100%);
+  background: #0B0F19;
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-gutter: stable;
 }
 
@@ -23,20 +19,5 @@ html {
 }
 
 .glass-panel {
-  @apply bg-dark-800/80 border border-white/10 shadow-xl rounded-2xl;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  @apply bg-dark-900;
-}
-::-webkit-scrollbar-thumb {
-  @apply bg-dark-700 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #374151;
+  @apply bg-dark-800 border border-white/10 rounded-2xl;
 }

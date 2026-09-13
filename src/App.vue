@@ -1,17 +1,17 @@
 <template>
   <div class="min-h-screen flex flex-col relative overflow-x-hidden">
-    <nav class="sticky top-0 w-full z-50 border-b border-white/10 bg-dark-900/92 backdrop-blur-xl">
+    <nav class="w-full border-b border-white/10 bg-dark-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center gap-3">
         <router-link to="/" class="flex items-center gap-3 group">
-          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary-600 to-blue-400 flex items-center justify-center shadow-lg shadow-primary-500/30">
+          <div class="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center">
             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
             </svg>
           </div>
-          <span class="font-bold text-base sm:text-lg tracking-wide text-white group-hover:text-primary-400 transition-colors">Trust Center</span>
+          <span class="font-bold text-base sm:text-lg tracking-wide text-white group-hover:text-primary-400">Trust Center</span>
         </router-link>
 
-        <router-link to="/admin/login" class="text-xs sm:text-sm font-medium text-gray-400 hover:text-white transition-colors whitespace-nowrap">
+        <router-link to="/admin/login" class="text-xs sm:text-sm font-medium text-gray-400 hover:text-white whitespace-nowrap">
           Admin Login
         </router-link>
       </div>

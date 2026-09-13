@@ -1,8 +1,8 @@
 <template>
   <article class="max-w-3xl mx-auto">
     <div class="mb-8 sm:mb-10">
-      <router-link to="/" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors group mb-6">
-        <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+      <router-link to="/" class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white group mb-6">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
         Back to hub
       </router-link>
       <div v-if="project">
@@ -54,10 +54,10 @@ onMounted(async () => {
 </script>
 
 <style>
-.policy-document { @apply rounded-2xl border border-white/10 bg-dark-800/55 px-5 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10 shadow-xl; }
+.policy-document { @apply rounded-2xl border border-white/10 bg-dark-800 px-5 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10; }
 .dynamic-html-content h1 { @apply text-white font-bold text-2xl sm:text-3xl leading-tight mb-5 sm:mb-6 border-b border-white/10 pb-4 break-words; }
-.dynamic-html-content h2 { @apply text-white font-bold text-xl sm:text-2xl leading-tight mb-3 mt-9 sm:mt-10 break-words scroll-mt-24; }
-.dynamic-html-content h3 { @apply text-white font-semibold text-lg sm:text-xl mb-3 mt-6 break-words scroll-mt-24; }
+.dynamic-html-content h2 { @apply text-white font-bold text-xl sm:text-2xl leading-tight mb-3 mt-9 sm:mt-10 break-words; }
+.dynamic-html-content h3 { @apply text-white font-semibold text-lg sm:text-xl mb-3 mt-6 break-words; }
 .dynamic-html-content p { @apply mb-5 leading-8 text-[15px] sm:text-base text-gray-300 break-words; }
 .dynamic-html-content ul { @apply list-disc pl-5 sm:pl-6 mb-6 space-y-3 text-[15px] sm:text-base text-gray-400; }
 .dynamic-html-content li { @apply leading-8 break-words; }

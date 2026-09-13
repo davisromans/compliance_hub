@@ -1,8 +1,8 @@
 <template>
   <div class="max-w-2xl mx-auto">
     <div class="mb-8 sm:mb-10">
-      <router-link to="/" class="inline-flex items-center text-sm text-gray-400 hover:text-white mb-6 transition-colors group">
-        <svg class="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+      <router-link to="/" class="inline-flex items-center text-sm text-gray-400 hover:text-white mb-6 group">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
         Back to hub
       </router-link>
 
@@ -39,7 +39,7 @@
             :href="project.deletePageUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-full py-3.5 px-4 bg-danger-500 hover:bg-danger-600 text-white font-bold rounded-xl transition-all flex justify-center items-center gap-2 text-sm sm:text-base">
+            class="w-full py-3.5 px-4 bg-danger-500 hover:bg-danger-600 text-white font-bold rounded-xl flex justify-center items-center gap-2 text-sm sm:text-base">
             Open deletion page
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7m0 0H9m8 0v8"></path>
