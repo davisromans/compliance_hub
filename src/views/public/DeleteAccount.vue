@@ -1,18 +1,18 @@
 <template>
-  <div class="max-w-xl mx-auto relative mt-10">
+  <div class="max-w-xl mx-auto relative mt-2 sm:mt-10">
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-danger-500/20 blur-[80px] rounded-full pointer-events-none"></div>
 
-    <div class="glass-panel border-danger-500/30 p-8 md:p-10 relative z-10">
+    <div class="glass-panel border-danger-500/30 p-5 sm:p-8 md:p-10 relative z-10">
       <router-link to="/" class="inline-flex items-center text-sm text-gray-400 hover:text-white mb-6 transition-colors group">
         <svg class="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
         Back to Hub
       </router-link>
 
-      <div class="text-center mb-8">
-        <div class="w-16 h-16 bg-danger-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-danger-500/20">
-          <svg class="w-8 h-8 text-danger-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+      <div class="text-center mb-7 sm:mb-8">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-danger-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-danger-500/20">
+          <svg class="w-7 h-7 sm:w-8 sm:h-8 text-danger-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
         </div>
-        <h1 class="text-3xl font-bold text-white mb-2">Delete account</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight">Delete account</h1>
         <p class="text-gray-400 text-sm">
           For <strong class="text-white">{{ project ? project.name : route.params.projectCode.toUpperCase() }}</strong>.
         </p>
@@ -25,6 +25,30 @@
       <div v-else-if="!project" class="p-4 rounded-xl bg-danger-500/10 text-danger-400 border border-danger-500/20 text-sm text-center">
         Unknown project code <code>{{ route.params.projectCode }}</code>. Return to the hub and pick a listed app.
       </div>
+
+      <!-- ============ EXTERNAL DELETE PAGE FLOW (Chaja etc.) ============ -->
+      <template v-else-if="flow === 'external-link'">
+        <div class="space-y-5">
+          <div class="rounded-xl border border-danger-500/20 bg-danger-500/10 p-4 text-sm text-gray-300 leading-relaxed">
+            {{ project.deleteInstructions || 'Open the app deletion page to sign in and request account deletion.' }}
+          </div>
+
+          <div class="rounded-xl border border-white/10 bg-dark-900/70 p-4 text-xs sm:text-sm text-gray-400 leading-7">
+            Deletion may be blocked while an application, loan, repayment, or pending payment is still active. If deletion is accepted, the account is disabled while records required for financial integrity, audit, tax, and regulatory reasons are retained.
+          </div>
+
+          <a
+            :href="project.deletePageUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full py-3.5 px-4 bg-danger-500 hover:bg-danger-600 text-white font-bold rounded-xl transition-all flex justify-center items-center gap-2 text-sm sm:text-base">
+            Open deletion page
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7m0 0H9m8 0v8"></path>
+            </svg>
+          </a>
+        </div>
+      </template>
 
       <!-- ============ EMAIL-TOKEN FLOW (Amo View etc.) ============ -->
       <template v-else-if="flow === 'email-token'">
