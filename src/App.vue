@@ -1,11 +1,7 @@
 <template>
   <div class="min-h-screen flex flex-col relative overflow-x-hidden">
-    
-    <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary-600/20 blur-[120px] rounded-full pointer-events-none"></div>
-    <div class="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-danger-500/10 blur-[100px] rounded-full pointer-events-none"></div>
-
-    <nav class="fixed top-0 w-full z-50 px-3 py-3 sm:p-4">
-      <div class="max-w-7xl mx-auto glass-panel px-4 py-3 sm:px-6 sm:py-4 flex justify-between items-center gap-3">
+    <nav class="sticky top-0 w-full z-50 border-b border-white/10 bg-dark-900/92 backdrop-blur-xl">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center gap-3">
         <router-link to="/" class="flex items-center gap-3 group">
           <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary-600 to-blue-400 flex items-center justify-center shadow-lg shadow-primary-500/30">
             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -21,11 +17,11 @@
       </div>
     </nav>
 
-    <main class="flex-1 pt-24 sm:pt-28 pb-12 max-w-7xl mx-auto w-full px-3 sm:px-6 relative z-10">
+    <main class="flex-1 py-8 sm:py-10 lg:py-12 max-w-7xl mx-auto w-full px-4 sm:px-6 relative z-10">
       <router-view></router-view>
     </main>
 
-    <footer class="w-full py-6 text-center text-gray-500 text-sm relative z-10 border-t border-white/5">
+    <footer class="w-full py-6 text-center text-gray-500 text-sm relative z-10 border-t border-white/10 bg-dark-900/70">
       &copy; {{ new Date().getFullYear() }} Centralized Trust & Compliance. All rights reserved.
     </footer>
   </div>

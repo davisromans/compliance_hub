@@ -1,23 +1,21 @@
 <template>
-  <div class="max-w-xl mx-auto relative mt-2 sm:mt-10">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-danger-500/20 blur-[80px] rounded-full pointer-events-none"></div>
-
-    <div class="glass-panel border-danger-500/30 p-5 sm:p-8 md:p-10 relative z-10">
+  <div class="max-w-2xl mx-auto">
+    <div class="mb-8 sm:mb-10">
       <router-link to="/" class="inline-flex items-center text-sm text-gray-400 hover:text-white mb-6 transition-colors group">
         <svg class="w-4 h-4 mr-1 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-        Back to Hub
+        Back to hub
       </router-link>
 
-      <div class="text-center mb-7 sm:mb-8">
-        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-danger-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-danger-500/20">
-          <svg class="w-7 h-7 sm:w-8 sm:h-8 text-danger-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-        </div>
-        <h1 class="text-2xl sm:text-3xl font-bold text-white mb-2 leading-tight">Delete account</h1>
-        <p class="text-gray-400 text-sm">
-          For <strong class="text-white">{{ project ? project.name : route.params.projectCode.toUpperCase() }}</strong>.
+      <div>
+        <p class="text-xs font-bold tracking-[0.22em] uppercase text-danger-500 mb-3">
+          {{ project ? project.name : route.params.projectCode.toUpperCase() }}
         </p>
+        <h1 class="text-3xl sm:text-4xl font-bold text-white mb-3 leading-tight">Delete account</h1>
+        <p class="text-gray-400 text-sm sm:text-base leading-7 max-w-xl">Review the account deletion path and any app-specific financial or compliance safeguards.</p>
       </div>
+    </div>
 
+    <div class="glass-panel border-danger-500/30 p-5 sm:p-8 md:p-10 relative z-10">
       <div v-if="isLoadingProject" class="flex justify-center items-center py-10">
         <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-danger-500"></div>
       </div>

@@ -1,32 +1,33 @@
 <template>
-  <div class="max-w-4xl mx-auto animate-fade-in">
-    <div class="text-center mb-7 sm:mb-10">
-      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-3 leading-tight">Trust & Compliance Hub</h1>
-      <p class="text-sm sm:text-base text-gray-400 leading-relaxed">Select an application to view its policies or manage your data.</p>
+  <div class="max-w-5xl mx-auto animate-fade-in">
+    <div class="mb-8 sm:mb-10">
+      <p class="text-xs font-bold tracking-[0.22em] uppercase text-primary-500 mb-3">Trust Center</p>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">Policies and account controls</h1>
+      <p class="text-sm sm:text-base text-gray-400 leading-7 max-w-2xl">Select an application to view its policies, terms, or account deletion options.</p>
     </div>
 
     <div v-if="isLoading" class="flex justify-center items-center py-20">
       <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-primary-500"></div>
     </div>
 
-    <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
-      <div v-for="project in projects" :key="project.code" class="glass-panel p-4 sm:p-5 group hover:border-primary-500/50 transition-all duration-300 relative overflow-hidden flex flex-col">
-        <div class="relative z-10 flex-1">
-          <div class="flex items-center gap-3 mb-5 min-w-0">
-            <div class="w-10 h-10 rounded-lg bg-dark-700 flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform">
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
+      <div v-for="project in projects" :key="project.code" class="glass-panel p-5 group hover:border-primary-500/50 transition-colors duration-200 relative flex flex-col min-h-[178px]">
+        <div class="relative z-10 flex flex-col flex-1">
+          <div class="flex items-center gap-3 mb-6 min-w-0">
+            <div class="w-11 h-11 rounded-lg bg-dark-700 flex items-center justify-center border border-white/10 shrink-0">
                <span class="text-lg font-bold text-primary-400">{{ project.name.charAt(0) }}</span>
             </div>
-            <h2 class="text-base sm:text-lg font-bold text-white leading-tight break-words">{{ project.name }}</h2>
+            <h2 class="text-lg font-bold text-white leading-tight break-words">{{ project.name }}</h2>
           </div>
           
-          <div class="flex flex-wrap gap-2 mt-auto">
-            <router-link :to="`/p/${project.code}/privacy`" class="flex-1 text-center px-2 py-2 rounded-md bg-dark-700 text-xs font-medium hover:bg-dark-900 border border-white/5 transition-colors">
+          <div class="grid grid-cols-2 gap-2 mt-auto">
+            <router-link :to="`/p/${project.code}/privacy`" class="text-center px-3 py-2.5 rounded-lg bg-dark-700 text-xs font-semibold hover:bg-dark-900 border border-white/5 transition-colors">
               Privacy
             </router-link>
-            <router-link :to="`/p/${project.code}/terms`" class="flex-1 text-center px-2 py-2 rounded-md bg-dark-700 text-xs font-medium hover:bg-dark-900 border border-white/5 transition-colors">
+            <router-link :to="`/p/${project.code}/terms`" class="text-center px-3 py-2.5 rounded-lg bg-dark-700 text-xs font-semibold hover:bg-dark-900 border border-white/5 transition-colors">
               Terms
             </router-link>
-            <router-link :to="`/p/${project.code}/delete-account`" class="w-full text-center px-3 py-2 mt-1 rounded-md bg-danger-500/10 text-danger-500 text-xs font-medium hover:bg-danger-500 hover:text-white border border-danger-500/20 transition-colors">
+            <router-link :to="`/p/${project.code}/delete-account`" class="col-span-2 text-center px-3 py-2.5 rounded-lg bg-danger-500/10 text-danger-500 text-xs font-semibold hover:bg-danger-500 hover:text-white border border-danger-500/20 transition-colors">
               Delete Account
             </router-link>
           </div>
