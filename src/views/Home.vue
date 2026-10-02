@@ -27,6 +27,9 @@
             <router-link :to="`/p/${project.code}/terms`" class="text-center px-3 py-2.5 rounded-lg bg-dark-700 text-xs font-semibold hover:bg-dark-900 border border-white/5">
               Terms
             </router-link>
+            <router-link v-if="project.childSafetyPolicy" :to="`/p/${project.code}/child-safety`" class="text-center px-3 py-2.5 rounded-lg bg-dark-700 text-xs font-semibold hover:bg-dark-900 border border-white/5">
+              Child Safety
+            </router-link>
             <router-link :to="`/p/${project.code}/delete-account`" class="col-span-2 text-center px-3 py-2.5 rounded-lg bg-danger-500/10 text-danger-500 text-xs font-semibold hover:bg-danger-500 hover:text-white border border-danger-500/20">
               Delete Account
             </router-link>

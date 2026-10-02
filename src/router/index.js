@@ -17,6 +17,11 @@ const routes = [
     component: () => import('../views/public/Terms.vue') // <-- New Route
   },
   {
+    path: '/p/:projectCode/child-safety',
+    name: 'ChildSafety',
+    component: () => import('../views/public/ChildSafety.vue')
+  },
+  {
     path: '/p/:projectCode/delete-account',
     name: 'DeleteAccount',
     component: () => import('../views/public/DeleteAccount.vue')

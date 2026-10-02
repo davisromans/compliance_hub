@@ -31,6 +31,7 @@ Public per-app routes (hash-routed, so they work on GitHub Pages):
 - `https://davisromans.github.io/compliance_hub/#/p/{code}/privacy`
 - `https://davisromans.github.io/compliance_hub/#/p/{code}/terms`
 - `https://davisromans.github.io/compliance_hub/#/p/{code}/delete-account`
+- `https://davisromans.github.io/compliance_hub/#/p/{code}/child-safety`
 
 ---
 
@@ -119,14 +120,15 @@ git push origin main                     # CI builds + deploys automatically
   "code": "yourapp",
   "deleteApiUrl": "https://api.yourapp.com/v1/auth/web-delete",
   "privacyPolicy": "<h1>Privacy Policy</h1>…",
-  "terms":          "<h1>Terms of Service</h1>…"
+  "terms":          "<h1>Terms of Service</h1>…",
+  "childSafetyPolicy": "<h1>Child Safety Standards</h1>…"
 }
 ```
 
 4. Save & publish (admin dashboard) or commit and push.
 5. Verify the three public URLs render:
-   `/#/p/yourapp/privacy`, `/#/p/yourapp/terms`, `/#/p/yourapp/delete-account`.
-6. Wire the app's in-app "Privacy / Terms / Delete account" buttons to those URLs.
+   `/#/p/yourapp/privacy`, `/#/p/yourapp/terms`, `/#/p/yourapp/delete-account`, `/#/p/yourapp/child-safety`.
+6. Wire the app's in-app "Privacy / Terms / Child Safety / Delete account" buttons to those URLs.
 
 ---
 

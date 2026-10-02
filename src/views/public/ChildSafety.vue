@@ -7,7 +7,7 @@
       </router-link>
       <div v-if="project">
         <p class="text-xs font-bold tracking-[0.22em] uppercase text-primary-500 mb-3">{{ project.name }}</p>
-        <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight break-words">Terms of Service</h1>
+        <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight break-words">Child Safety Standards</h1>
       </div>
       <div v-else-if="!isLoading">
         <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Project Not Found</h1>
@@ -19,18 +19,10 @@
     </div>
 
     <div v-else-if="project" class="policy-document text-gray-300">
-      <div v-if="project.terms" v-html="project.terms" class="dynamic-html-content"></div>
-      <div v-if="project.childSafetyPolicy" class="mt-8 rounded-xl border border-primary-500/20 bg-primary-500/5 p-5 sm:p-6">
-        <h2 class="text-white font-bold text-xl mb-2">Child safety standards</h2>
-        <p class="mb-0 leading-7">These Terms incorporate Amo View’s Child Safety Standards, which apply to content, live sessions, comments, and messaging.</p>
-        <router-link :to="`/p/${project.code}/child-safety`" class="inline-flex mt-4 text-primary-400 hover:text-white font-semibold">Read the Child Safety Standards →</router-link>
-      </div>
-      
+      <div v-if="project.childSafetyPolicy" v-html="project.childSafetyPolicy" class="dynamic-html-content"></div>
       <div v-else>
-        <h2 class="text-white font-bold text-2xl mb-4">1. Acceptance of Terms</h2>
-        <p class="mb-6 leading-relaxed">
-          By accessing and using {{ project.name }}, you accept and agree to be bound by the terms and provision of this agreement.
-        </p>
+        <h2 class="text-white font-bold text-2xl mb-4">Child Safety Standards</h2>
+        <p class="mb-6 leading-relaxed">This project has not published child safety standards yet.</p>
       </div>
     </div>
   </article>

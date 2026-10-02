@@ -82,6 +82,11 @@
               <textarea v-model="activeProject.terms" rows="16" placeholder="<h1>Terms of Service</h1>..." class="w-full flex-1 bg-dark-900 border border-dark-700 text-white px-4 py-3 rounded-lg focus:ring-1 focus:ring-primary-500 focus:outline-none font-mono text-sm leading-relaxed custom-scrollbar"></textarea>
             </div>
           </div>
+          <div class="mt-6">
+            <label class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 block">Child Safety Standards (HTML)</label>
+            <textarea v-model="activeProject.childSafetyPolicy" rows="18" placeholder="<h1>Child Safety Standards</h1>..." class="w-full bg-dark-900 border border-dark-700 text-white px-4 py-3 rounded-lg focus:ring-1 focus:ring-primary-500 focus:outline-none font-mono text-sm leading-relaxed custom-scrollbar"></textarea>
+            <p class="text-xs text-gray-500 mt-2">Published at <code>#/p/{code}/child-safety</code>. Keep the app name, reporting route, and child-safety contact details current.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -108,7 +113,7 @@ onMounted(async () => {
     return
   }
   const result = await getProjects()
-  projects.value = result.data.length ? result.data : [{ name: 'ADM Ministry', code: 'adm', deleteApiUrl: 'http://172.105.118.145/api/auth/web-delete', privacyPolicy: '<h2>Privacy Policy</h2>', terms: '<h2>Terms of Service</h2>' }]
+  projects.value = result.data.length ? result.data : [{ name: 'ADM Ministry', code: 'adm', deleteApiUrl: 'http://172.105.118.145/api/auth/web-delete', privacyPolicy: '<h2>Privacy Policy</h2>', terms: '<h2>Terms of Service</h2>', childSafetyPolicy: '' }]
   currentSha.value = result.sha
   isLoading.value = false
 })
@@ -121,7 +126,7 @@ const handleLogout = () => {
 const selectProject = (index) => activeProjectIndex.value = index
 
 const createNewProject = () => {
-  projects.value.push({ name: 'New App', code: `app-${Date.now()}`, deleteApiUrl: '', privacyPolicy: '', terms: '' })
+  projects.value.push({ name: 'New App', code: `app-${Date.now()}`, deleteApiUrl: '', privacyPolicy: '', terms: '', childSafetyPolicy: '' })
   activeProjectIndex.value = projects.value.length - 1
 }
 

@@ -20,6 +20,11 @@
 
     <div v-else-if="project" class="policy-document text-gray-300">
       <div v-if="project.privacyPolicy" v-html="project.privacyPolicy" class="dynamic-html-content"></div>
+      <div v-if="project.childSafetyPolicy" class="mt-8 rounded-xl border border-primary-500/20 bg-primary-500/5 p-5 sm:p-6">
+        <h2 class="text-white font-bold text-xl mb-2">Child safety standards</h2>
+        <p class="mb-0 leading-7">Amo View has separate public standards for preventing child sexual abuse and exploitation and handling child-safety reports.</p>
+        <router-link :to="`/p/${project.code}/child-safety`" class="inline-flex mt-4 text-primary-400 hover:text-white font-semibold">Read the Child Safety Standards →</router-link>
+      </div>
       
       <div v-else>
         <h2 class="text-white font-bold text-2xl mb-4">1. Introduction</h2>
