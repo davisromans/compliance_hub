@@ -14,6 +14,7 @@ Currently hosts:
 |-----------|---------------|---------------|------------------------------------------------------------|
 | `amoview` | Amo View      | `email-token` | `https://app.amoview.com/api/v1/auth/web-delete`           |
 | `adm`     | ADM Ministry  | `password`    | `http://172.105.118.145/api/auth/web-delete`               |
+| `storytela` | Storytela   | `email-token` | `https://api.storytela.com/api/v1/auth/web-delete`         |
 
 The hub supports **two deletion flows**, picked per-app via the `deleteFlow`
 field in `projects.json`:
