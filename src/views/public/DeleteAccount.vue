@@ -48,8 +48,9 @@
         </div>
       </template>
 
-      <!-- ============ EMAIL-TOKEN FLOW (Amo View etc.) ============ -->
-      <template v-else-if="flow === 'email-token'">
+      <!-- ============ EMAIL-TOKEN / SMS-TOKEN FLOW (Amo View, Dropmate…) ============ -->
+      <!-- sms-token is the same two steps, with the link sent by SMS to the account's phone. -->
+      <template v-else-if="flow === 'email-token' || flow === 'sms-token'">
 
         <!-- Step 2 — confirm token from the email -->
         <div v-if="urlToken">
@@ -57,7 +58,7 @@
             You're one tap away from permanently deleting your account.
           </p>
           <p class="text-gray-500 text-xs mb-6 leading-relaxed">
-            We will remove your profile, channel, push tokens and personally identifiable data within 24 hours. Wallet balance is forfeited. This cannot be undone.
+            {{ project.deleteConfirmNote || 'We will remove your profile, channel, push tokens and personally identifiable data within 24 hours. Wallet balance is forfeited. This cannot be undone.' }}
           </p>
 
           <div class="flex items-start gap-2 mb-5">
@@ -90,24 +91,24 @@
         <!-- Step 1 — request the email -->
         <div v-else>
           <p class="text-gray-300 text-sm mb-1">
-            Enter the email on your {{ project.name }} account.
+            Enter the {{ bySms ? 'phone number' : 'email' }} on your {{ project.name }} account.
           </p>
           <p class="text-gray-500 text-xs mb-6 leading-relaxed">
-            We'll send a confirmation link to your inbox. Click it to finish deleting your account — no password needed. Works for accounts created with Google or Apple sign-in too.
+            We'll send a confirmation link {{ bySms ? 'by SMS' : 'to your inbox' }}. {{ bySms ? 'Tap' : 'Click' }} it to finish deleting your account — no password needed. Works for accounts created with Google or Apple sign-in too.
           </p>
 
           <form @submit.prevent="handleRequest" class="space-y-5">
             <div>
-              <label class="block text-sm font-medium text-gray-300 mb-1">Account email</label>
+              <label class="block text-sm font-medium text-gray-300 mb-1">{{ bySms ? 'Phone number' : 'Account email' }}</label>
               <input
-                type="email"
+                :type="bySms ? 'tel' : 'email'"
                 v-model="identifier"
                 required
-                placeholder="you@example.com"
-                autocomplete="username"
+                :placeholder="bySms ? 'e.g. 0712 345 678' : 'you@example.com'"
+                :autocomplete="bySms ? 'tel' : 'username'"
                 class="w-full bg-dark-900 border border-dark-700 text-white px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-danger-500/50 transition-all placeholder-gray-600" />
-              <p class="text-xs text-gray-500 mt-2 leading-relaxed">
-                Don't have an email on your account? Open the Amo View app, go to <em>Edit profile</em>, add an email, then come back here.
+              <p v-if="!bySms" class="text-xs text-gray-500 mt-2 leading-relaxed">
+                Don't have an email on your account? Open the {{ project.name }} app, go to <em>Edit profile</em>, add an email, then come back here.
               </p>
             </div>
 
@@ -119,7 +120,7 @@
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              {{ isLoading ? 'Sending…' : 'Send confirmation email' }}
+              {{ isLoading ? 'Sending…' : (bySms ? 'Send confirmation SMS' : 'Send confirmation email') }}
             </button>
 
             <div v-if="message" :class="['p-4 rounded-xl text-sm font-medium text-center', isError ? 'bg-danger-500/10 text-danger-400 border border-danger-500/20' : 'bg-green-500/10 text-green-400 border border-green-500/20']">
@@ -191,6 +192,7 @@ const project = ref(null)
 const isLoadingProject = ref(true)
 
 const flow = computed(() => (project.value && project.value.deleteFlow) || 'password')
+const bySms = computed(() => flow.value === 'sms-token')
 
 // vue-router with hash mode lets us read the query off route.query.
 const urlToken = computed(() => route.query.token || '')
@@ -228,7 +230,7 @@ const handleRequest = async () => {
 
     if (response.ok && data.success !== false) {
       isError.value = false
-      message.value = data.message || "If that email is on file, we've sent a confirmation link."
+      message.value = data.message || (bySms.value ? "If that number has an account, we've sent a confirmation link by SMS." : "If that email is on file, we've sent a confirmation link.")
       identifier.value = ''
     } else {
       isError.value = true

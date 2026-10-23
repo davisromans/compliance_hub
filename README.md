@@ -15,6 +15,7 @@ Currently hosts:
 | `amoview` | Amo View      | `email-token` | `https://app.amoview.com/api/v1/auth/web-delete`           |
 | `adm`     | ADM Ministry  | `password`    | `http://172.105.118.145/api/auth/web-delete`               |
 | `storytela` | Storytela   | `email-token` | `https://api.storytela.com/api/v1/auth/web-delete`         |
+| `dropmate` | Dropmate     | `sms-token`   | `https://api.dropmate.or.tz/api/v1/auth/web-delete`        |
 
 The hub supports **two deletion flows**, picked per-app via the `deleteFlow`
 field in `projects.json`:
@@ -24,6 +25,9 @@ field in `projects.json`:
   1. User enters their account email → page POSTs to `${deleteApiUrl}/request`.
   2. Backend emails a one-time confirmation link with a `?token=...` query.
   3. User clicks → page POSTs the token to `${deleteApiUrl}/confirm` → account is hard-deleted.
+- **`sms-token`** (Dropmate) — same two steps as `email-token`, but the
+  confirmation link goes by SMS to the account's phone number (Dropmate
+  accounts are phone-first). Backend: `dropmate-backend/src/modules/web-delete.js`.
 - **`password`** (ADM Ministry — default if `deleteFlow` is absent) — single
   call to `${deleteApiUrl}` with `{ identifier, password }`.
 
